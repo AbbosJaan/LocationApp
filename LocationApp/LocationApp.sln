@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationApp", "LocationApp.csproj", "{DCF8EF01-546E-49AB-8214-F6B5734D05D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "..\DataAccess\DataAccess.csproj", "{66BCB758-ED90-45D3-98F2-4D8CC040BA19}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCF8EF01-546E-49AB-8214-F6B5734D05D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF8EF01-546E-49AB-8214-F6B5734D05D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF8EF01-546E-49AB-8214-F6B5734D05D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF8EF01-546E-49AB-8214-F6B5734D05D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66BCB758-ED90-45D3-98F2-4D8CC040BA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66BCB758-ED90-45D3-98F2-4D8CC040BA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66BCB758-ED90-45D3-98F2-4D8CC040BA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66BCB758-ED90-45D3-98F2-4D8CC040BA19}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD4891CF-A43C-41E1-A73B-E7D539ED3287}
+	EndGlobalSection
+EndGlobal
