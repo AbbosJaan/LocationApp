@@ -15,8 +15,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LocationDb")));
 
-builder.Services.AddTransient<IGenericCRUDService<RegionModel>, RegionCRUDService>();
-builder.Services.AddTransient<IGenericCRUDService<CountryModel>, CountryCRUDService>();
+builder.Services.AddTransient<IGenericCRUDService<RegionCreationModel, RegionResponseModel>, RegionCRUDService>();
+builder.Services.AddTransient<IGenericCRUDService<CountryCreationModel, CountryResponseModel>, CountryCRUDService>();
 
 builder.Services.AddTransient<IGenericRepository<Region>, RegionRepository>();
 builder.Services.AddTransient<IGenericRepository<Country>, CountryRepository>();

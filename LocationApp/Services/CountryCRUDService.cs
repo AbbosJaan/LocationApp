@@ -4,7 +4,7 @@ using LocationApp.Models;
 
 namespace LocationApp.Services
 {
-    public class CountryCRUDService : IGenericCRUDService<CountryModel>
+    public class CountryCRUDService : IGenericCRUDService<CountryCreationModel, CountryResponseModel>
     {
         private readonly IGenericRepository<Country> _countryRepository;
         public CountryCRUDService(IGenericRepository<Country> countryRepository)
@@ -12,22 +12,21 @@ namespace LocationApp.Services
             _countryRepository = countryRepository;
         }
 
-        public async Task<CountryModel> Create(CountryModel model)
+        public async Task<CountryResponseModel> Create(CountryCreationModel model)
         {
             var country = new Country
             {
-                Id = model.Id,
                 Code = model.Code,
                 ShortTitle = model.ShortTitle,
                 Title = model.Title
             };
             var creataeCountry = await _countryRepository.Create(country);
-            var result = new CountryModel
+            var result = new CountryResponseModel
             {
-                Id = creataeCountry.Id,
                 Code = creataeCountry.Code,
                 ShortTitle = creataeCountry.ShortTitle,
-                Title = creataeCountry.Title
+                Title = creataeCountry.Title,
+                Id = creataeCountry.Id
             };
             return result;
         }
@@ -37,48 +36,50 @@ namespace LocationApp.Services
             return await _countryRepository.Delete(id);
         }
 
-        public async Task<IEnumerable<CountryModel>> Get()
+        public async Task<IEnumerable<CountryResponseModel>> Get()
         {
-            var result = new List<CountryModel>();
+            var result = new List<CountryResponseModel>();
             var countrys = await _countryRepository.Get();
             foreach (var country in countrys)
             {
-                var model = new CountryModel
+                var model = new CountryResponseModel
                 {
                     Id = country.Id,
                     Code = country.Code,
                     ShortTitle = country.ShortTitle,
                     Title = country.Title
+                    //Regions = country.Regions
                 };
                 result.Add(model);
             }
             return result;
         }
 
-        public async Task<CountryModel> Get(int id)
+        public async Task<CountryResponseModel> Get(int id)
         {
             var model = await _countryRepository.Get(id);
-            var result = new CountryModel
+            var result = new CountryResponseModel
             {
                 Id = model.Id,
                 Code = model.Code,
                 ShortTitle = model.ShortTitle,
-                Title = model.Title
+                Title = model.Title,
+                //Regions = model.Regions
             };
             return result;
         }
 
-        public async Task<CountryModel> Update(int id, CountryModel model)
+        public async Task<CountryResponseModel> Update(int id, CountryCreationModel model)
         {
             var country = new Country
             {
-                Id = model.Id,
+                Id = id,
                 Code = model.Code,
                 ShortTitle = model.ShortTitle,
                 Title = model.Title
             };
             var updatedCountry = await _countryRepository.Update(id, country);
-            var result = new CountryModel
+            var result = new CountryResponseModel
             {
                 Id = updatedCountry.Id,
                 Code = updatedCountry.Code,

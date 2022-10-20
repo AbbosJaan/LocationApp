@@ -10,8 +10,8 @@ namespace LocationApp.Controllers
     [ApiController]
     public class RegionController : ControllerBase
     {
-        private readonly IGenericCRUDService<RegionModel> _regionSvc;
-        public RegionController(IGenericCRUDService<RegionModel> addressSvc)
+        private readonly IGenericCRUDService<RegionCreationModel, RegionResponseModel> _regionSvc;
+        public RegionController(IGenericCRUDService<RegionCreationModel, RegionResponseModel> addressSvc)
         {
             _regionSvc = addressSvc;
         }
@@ -36,16 +36,16 @@ namespace LocationApp.Controllers
 
         // POST api/<RegionController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] RegionModel region)
+        public async Task<IActionResult> Post([FromBody] RegionCreationModel region)
         {
             var createRegion = await _regionSvc.Create(region);
-            var routeValues = new { id = createRegion.Id };
+            var routeValues = new { title = createRegion.Title };
             return CreatedAtRoute(routeValues, createRegion);
         }
 
         // PUT api/<RegionController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] RegionModel region)
+        public async Task<IActionResult> Put(int id, [FromBody] RegionCreationModel region)
         {
              var updatedRegion = await _regionSvc.Update(id, region);
             return Ok(updatedRegion);

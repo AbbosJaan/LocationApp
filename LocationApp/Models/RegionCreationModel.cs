@@ -2,12 +2,11 @@
 
 namespace LocationApp.Models
 {
-    public class RegionModel
+    public class RegionCreationModel
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string ShortTitle { get; set; }
-        public Country Country { get; set; }
         public int Code { get; set; }
+        public int CountryId { get; set; }
     }
 }

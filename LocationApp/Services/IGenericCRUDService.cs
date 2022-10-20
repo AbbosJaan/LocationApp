@@ -1,11 +1,11 @@
 ﻿namespace LocationApp.Services
 {
-    public interface IGenericCRUDService<T> where T : class
+    public interface IGenericCRUDService<T, Ttwo> where T : class
     {
-        Task<IEnumerable<T>> Get();
-        Task<T> Create(T model);
-        Task<T> Get(int id);
-        Task<T> Update(int id, T model);
+        Task<IEnumerable<Ttwo>> Get();
+        Task<Ttwo> Create(T model);
+        Task<Ttwo> Get(int id);
+        Task<Ttwo> Update(int id, T model);
         Task<bool> Delete(int id);
     }
 }

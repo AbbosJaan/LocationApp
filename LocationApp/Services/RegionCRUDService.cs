@@ -4,32 +4,34 @@ using LocationApp.Models;
 
 namespace LocationApp.Services
 {
-    public class RegionCRUDService : IGenericCRUDService<RegionModel>
+    public class RegionCRUDService : IGenericCRUDService<RegionCreationModel, RegionResponseModel>
     {
         private readonly IGenericRepository<Region> _regionRepository;
-        public RegionCRUDService(IGenericRepository<Region> regionRepository)
+        private readonly IGenericRepository<Country> _countryRepository;
+        public RegionCRUDService(IGenericRepository<Region> regionRepository, IGenericRepository<Country> countryRepository)
         {
             _regionRepository = regionRepository;
+            _countryRepository = countryRepository;
         }
 
-        public async Task<RegionModel> Create(RegionModel model)
+        public async Task<RegionResponseModel> Create(RegionCreationModel model)
         {
             var region = new Region
             {
-                Id = model.Id,
                 Code = model.Code,
-                Country = model.Country,
                 ShortTitle = model.ShortTitle,
-                Title = model.Title
+                Title = model.Title,
+                CountryId = model.CountryId,
             };
             var creataeRegion = await _regionRepository.Create(region);
-            var result = new RegionModel
+            var result = new RegionResponseModel
             {
                 Id = creataeRegion.Id,
                 Code = creataeRegion.Code,
-                Country = creataeRegion.Country,
                 ShortTitle = creataeRegion.ShortTitle,
-                Title = creataeRegion.Title
+                Title = creataeRegion.Title,
+                CountryId = creataeRegion.CountryId,
+                Country = nameof(creataeRegion.Country)
             };
             return result;
         }
@@ -39,17 +41,19 @@ namespace LocationApp.Services
             return await _regionRepository.Delete(id);
         }
 
-        public async Task<IEnumerable<RegionModel>> Get()
+        public async Task<IEnumerable<RegionResponseModel>> Get()
         {
-            var result = new List<RegionModel>();
+            var result = new List<RegionResponseModel>();
             var regions = await _regionRepository.Get();
             foreach (var region in regions)
             {
-                var model = new RegionModel
+                var country = await _countryRepository.Get(region.CountryId);
+                var model = new RegionResponseModel
                 {
                     Id = region.Id,
                     Code = region.Code,
-                    Country = region.Country,
+                    Country = country.Title,
+                    CountryId = region.CountryId,
                     ShortTitle = region.ShortTitle,
                     Title = region.Title
                 };
@@ -58,35 +62,38 @@ namespace LocationApp.Services
             return result;
         }
 
-        public async Task<RegionModel> Get(int id)
+        public async Task<RegionResponseModel> Get(int id)
         {
             var model = await _regionRepository.Get(id);
-            var result = new RegionModel
+            var country =await _countryRepository.Get(model.CountryId);
+            var result = new RegionResponseModel
             {
                 Id = model.Id,
                 Code = model.Code,
-                Country = model.Country,
+                CountryId = model.CountryId,
+                Country = country.Title,
                 ShortTitle = model.ShortTitle,
                 Title = model.Title
             };
             return result;
         }
 
-        public async Task<RegionModel> Update(int id, RegionModel model)
+        public async Task<RegionResponseModel> Update(int id, RegionCreationModel model)
         {
             var region = new Region
             {
-                Id = model.Id,
+                Id = id,
                 Code = model.Code,
-                Country = model.Country,
+                CountryId = model.CountryId,
                 ShortTitle = model.ShortTitle,
                 Title = model.Title
-            };
+                };
             var updatedRegion = await _regionRepository.Update(id, region);
-            var result = new RegionModel
+            var result = new RegionResponseModel
             {
                 Id = updatedRegion.Id,
-                Country = updatedRegion.Country,
+                Country = nameof(updatedRegion.Title),
+                CountryId = updatedRegion.CountryId,
                 Code = updatedRegion.Code,
                 ShortTitle = updatedRegion.ShortTitle,
                 Title = updatedRegion.Title

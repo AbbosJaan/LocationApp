@@ -1,4 +1,5 @@
-﻿using LocationApp.Models;
+﻿using DataAccess.Entity;
+using LocationApp.Models;
 using LocationApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,8 +11,8 @@ namespace LocationApp.Controllers
     [ApiController]
     public class CountryController : ControllerBase
     {
-        private readonly IGenericCRUDService<CountryModel> _countrySvc;
-        public CountryController(IGenericCRUDService<CountryModel> countrySvc)
+        private readonly IGenericCRUDService<CountryCreationModel, CountryResponseModel> _countrySvc;
+        public CountryController(IGenericCRUDService<CountryCreationModel, CountryResponseModel> countrySvc)
         {
             _countrySvc = countrySvc;
         }
@@ -36,16 +37,16 @@ namespace LocationApp.Controllers
 
         // POST api/<CountryController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CountryModel country)
+        public async Task<IActionResult> Post([FromBody] CountryCreationModel country)
         {
             var createCountry = await _countrySvc.Create(country);
-            var routeValues = new { id = createCountry.Id };
-            return CreatedAtRoute(routeValues, createCountry);
+            var routeValues = new { name = createCountry.Title};
+            return CreatedAtRoute(routeValues, country);
         }
 
         // PUT api/<CountryController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] CountryModel country)
+        public async Task<IActionResult> Put(int id, [FromBody] CountryCreationModel country)
         {
             var updatedRegion = await _countrySvc.Update(id, country);
             return Ok(updatedRegion);

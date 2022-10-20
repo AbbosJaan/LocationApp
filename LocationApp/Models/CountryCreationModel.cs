@@ -1,8 +1,9 @@
-﻿namespace LocationApp.Models
+﻿using DataAccess.Entity;
+
+namespace LocationApp.Models
 {
-    public class CountryModel
+    public class CountryCreationModel
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string ShortTitle { get; set; }
         public int Code { get; set; }
