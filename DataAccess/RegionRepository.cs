@@ -37,7 +37,7 @@ namespace DataAccess
 
         public async Task<IEnumerable<Region>> Get()
         {
-            return await _dbContext.Regions.ToListAsync();
+            return await _dbContext.Regions.Include(p => p.Country).ToListAsync();
         }
 
         public async Task<Region> Get(int id)

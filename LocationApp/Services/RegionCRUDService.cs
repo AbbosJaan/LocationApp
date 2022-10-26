@@ -47,12 +47,11 @@ namespace LocationApp.Services
             var regions = await _regionRepository.Get();
             foreach (var region in regions)
             {
-                var country = await _countryRepository.Get(region.CountryId);
                 var model = new RegionResponseModel
                 {
                     Id = region.Id,
                     Code = region.Code,
-                    Country = country.Title,
+                    Country = region.Country.Title,
                     CountryId = region.CountryId,
                     ShortTitle = region.ShortTitle,
                     Title = region.Title
