@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "..\DataAccess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseAPI", "..\UseAPI\UseAPI.csproj", "{B289AA37-518E-4C5A-8ED1-B00FFEFE7FBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "winform", "..\winform\winform.csproj", "{687091C7-23E4-494D-B7A8-88721DAB5C70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "winform", "..\WindowsForm\winform.csproj", "{DBC878A8-1FFD-496E-A0AB-B600E7CAA885}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{B289AA37-518E-4C5A-8ED1-B00FFEFE7FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B289AA37-518E-4C5A-8ED1-B00FFEFE7FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B289AA37-518E-4C5A-8ED1-B00FFEFE7FBA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{687091C7-23E4-494D-B7A8-88721DAB5C70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{687091C7-23E4-494D-B7A8-88721DAB5C70}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{687091C7-23E4-494D-B7A8-88721DAB5C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{687091C7-23E4-494D-B7A8-88721DAB5C70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBC878A8-1FFD-496E-A0AB-B600E7CAA885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBC878A8-1FFD-496E-A0AB-B600E7CAA885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBC878A8-1FFD-496E-A0AB-B600E7CAA885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBC878A8-1FFD-496E-A0AB-B600E7CAA885}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

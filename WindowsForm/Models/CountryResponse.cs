@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace winform.Models
 {
-    public class Country
+    public class CountryResponse : CountryCr
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string ShortTitle { get; set; }
-        public int Code { get; set; }
     }
 }
